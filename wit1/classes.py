@@ -40,3 +40,12 @@ while True:
 
 
 
+
+
+
+if any(posY < y < (posY + p_height) for y in range:
+
+if 10 < x 20 and any(posY < y < (posY + p_height + p_width) for y in range:
+
+if any(posY < y < (posY + p_width) for y in range:
+if any(posY < y < (posY + p_width + p_height) for y in range:

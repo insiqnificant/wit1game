@@ -89,9 +89,9 @@ def discrete_selections():
     if event.key == pygame.K_RETURN and exitColor == red:
         pygame.quit()
 
-  '''
+'''
   intro sequence
-  '''
+'''
 
 Intro = True
 caption1 = 0
@@ -169,7 +169,9 @@ jumpHeight = .19
 jumping = False
 reversejumping = False
 j_count = 10
+playerColor = black
 onGround = True
+score = 0
 '''
 game stuff
 '''
@@ -195,7 +197,7 @@ while Running:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.quit()
-    draw.rect(win, black, ((posX, posY), (p_width,p_height)))
+    draw.rect(win, playerColor, ((posX, posY), (p_width,p_height)))
     if clockTimer == 0:
         countdown = False
         scrolling = True
@@ -205,18 +207,41 @@ while Running:
     if not (jumping):
         if keys[pygame.K_w]:
             jumping = True
+            onGround = False
     else:
         if j_count >= -10:
             posY -= (j_count * abs(j_count)) * jumpHeight
             j_count -= 1
         else:
+            onGround = True
             jumping = False
             j_count = 10
-
-    
+    if posX <= 2:
+        playerColor = white
+        Running = False
     if keys[pygame.K_a]:
         posX -= vel
     if keys[pygame.K_d]:
         posX += vel
-    print(posY)
+    print(posX)
+    dis.update()
+
+gameOver = True
+'''
+losing stuff
+'''
+gameSet = font.render("GAME OVER", True, (white))
+yourScore = font.render("Your score is:", True,(white))
+
+while gameOver:
+    clock.tick(fps)
+    keys = pygame.key.get_pressed()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.quit()
+        if event.type == pygame.KEYDOWN:
+            discrete_selections()
+    win.fill(black)
+    win.blit(gameSet, (240 - gameSet.get_width() // 2, 170 - gameSet.get_height() // 2))
     dis.update()

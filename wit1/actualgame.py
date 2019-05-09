@@ -13,7 +13,7 @@ draw = pygame.draw
 '''
 display
 '''
-pygame.display.set_caption("sumn")
+dis.set_caption("sumn")
 _height = 500
 _width = 500
 half_height = int(_height)/2
@@ -168,7 +168,7 @@ posX = half_width
 posY = half_width
 p_height = 20
 p_width = 10
-vel = 11
+vel = 5
 jumpHeight = .19
 jumping = False
 reversejumping = False
@@ -183,9 +183,9 @@ game stuff
 '''
 object stuff
 '''
-o_posX1 = 700
-o_posX2 = 730
-o_posX3 = 760
+o_posX1 = 720
+o_posX2 = 750
+o_posX3 = 810
 o_posY1 = half_width - 20
 o_posY2 = half_width - 20
 o_posY3 = half_width - 20
@@ -272,6 +272,7 @@ yourScore = font.render("Your score is:", True, (white))
 
 while gameOver:
     clock.tick(fps)
+    dis.set_caption("Press RETURN")
     keys = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -279,6 +280,8 @@ while gameOver:
             sys.quit()
         if event.type == pygame.KEYDOWN:
             discrete_selections()
+    if gameOver and keys[pygame.K_RETURN]:
+        gaeOver = False
     win.fill(black)
     win.blit(gameSet, (240 - gameSet.get_width() //
                        2, 170 - gameSet.get_height() // 2))
